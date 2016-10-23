@@ -1,6 +1,6 @@
 {
   "name": "react-pull-stream",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "main": "index.js",
   "scripts": {
     "postversion": "git push && git push --tags && npm publish",
