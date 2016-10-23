@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "main": "index.js",
   "scripts": {
+    "postversion": "git push && git push --tags && npm publish",
     "dev": "wzrd example/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

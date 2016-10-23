@@ -14,15 +14,15 @@ function toStream (El) {
     })
 
     var View = React.createClass({
-        componentWillMount: function () {
-            push('componentWillMount')
-        },
-        componentDidMount: function () {
-            push('componentDidMount')
-        },
-        componentWillUnmount: function () {
-            push('componentWillUnmount')
-        },
+        // componentWillMount: function () {
+        //     push('componentWillMount')
+        // },
+        // componentDidMount: function () {
+        //     push('componentDidMount')
+        // },
+        // componentWillUnmount: function () {
+        //     push('componentWillUnmount')
+        // },
         render: function () {
             // return <El {...this.props} push={push} />
             return React.createElement(El, xtend(this.props, {
