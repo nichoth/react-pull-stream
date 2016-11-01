@@ -1,3 +1,16 @@
+# react pull stream
+
+Create a duplex stream from a react component.
+
+
+## install
+
+    $ npm install react-pull-stream
+
+
+## example
+
+```js
 var React = require('react')
 var h = React.createElement
 var reactDom = require('react-dom')
@@ -23,6 +36,7 @@ function MyView (props) {
 
 MyView.defaultProps = { count: 0 }
 
+
 // duplex stream
 var stream = toStream(MyView)
 
@@ -35,4 +49,4 @@ S(
     S.map( n => ({ count: n }) ),
     stream
 )
-
+```
