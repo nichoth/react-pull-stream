@@ -4,10 +4,12 @@
   "main": "index.js",
   "scripts": {
     "postversion": "git push && git push --tags && npm publish",
-    "dev": "wzrd example/index.js",
+    "dev": "wzrd example/index.js -- -dv",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
+    "pull-abortable": "^4.1.0",
+    "pull-notify": "^0.1.1",
     "pull-pushable": "^2.0.1",
     "pull-stream": "^3.4.5",
     "react": "^15.3.2",
