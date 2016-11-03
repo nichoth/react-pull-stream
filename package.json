@@ -33,5 +33,16 @@
     "url": "https://github.com/nichoth/react-pull-stream/issues"
   },
   "homepage": "https://github.com/nichoth/react-pull-stream#readme",
-  "description": ""
+  "description": "Create a duplex stream from a react component.",
+  "directories": {
+    "example": "example",
+    "test": "test"
+  },
+  "keywords": [
+    "react",
+    "pull",
+    "stream",
+    "pull-stream",
+    "duplex"
+  ]
 }
