@@ -18,7 +18,6 @@ var S = require('pull-stream')
 var toStream = require('../')
 
 function MyView (props) {
-    console.log(props)
 
     function click (n) {
         props.push(n)
