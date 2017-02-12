@@ -6,11 +6,11 @@ var Drain = require('pull-stream/sinks/drain')
 var Abortable = require('pull-abortable')
 var Notify = require('pull-notify')
 
-function toStream (Elmt) {
-    var n = Notify()
-    var p = Pushable()
+function ReactStream (Elmt, _pushable) {
+    var notify = Notify()
+    var pushable = _pushable || Pushable()
 
-    var listener = n.listen()
+    var listener = notify.listen()
 
     var DrainElmt = React.createClass({
         componentDidMount: function () {
@@ -25,9 +25,10 @@ function toStream (Elmt) {
         },
 
         render: function () {
-            return React.createElement(Elmt, xtend(this.props, this.state, {
-                push: p.push.bind(p)
-            }), null)
+            var props = xtend(this.props, this.state, {
+                push: pushable.push
+            })
+            return React.createElement(Elmt, props, null)
         }
     })
 
@@ -35,18 +36,20 @@ function toStream (Elmt) {
     var drain = S(
         abortable,
         Drain(function onEvent (ev) {
-            n(ev)
+            notify(ev)
         }, function onEnd (err) {
+            // @TODO
+            console.log('end', err)
         })
     )
     drain.abort = abortable.abort.bind(abortable)
 
     return {
-        source: p,
+        source: pushable,
         sink: drain,
         view: DrainElmt
     }
 }
 
-module.exports = toStream
+module.exports = ReactStream
 
