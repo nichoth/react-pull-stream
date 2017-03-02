@@ -38,8 +38,7 @@ function ReactStream (Elmt, _pushable) {
         Drain(function onEvent (ev) {
             notify(ev)
         }, function onEnd (err) {
-            // @TODO
-            console.log('end', err)
+            if (err) throw err
         })
     )
     drain.abort = abortable.abort.bind(abortable)
