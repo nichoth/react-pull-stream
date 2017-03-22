@@ -13,7 +13,7 @@ function ReactStream (Elmt, _pushable) {
     var listener = notify.listen()
 
     var DrainElmt = React.createClass({
-        componentDidMount: function () {
+        componentWillMount: function () {
             var self = this
             var drain = Drain(function onEvent (ev) {
                 self.setState(ev)
