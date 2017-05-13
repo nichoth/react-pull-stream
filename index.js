@@ -6,9 +6,17 @@ var Drain = require('pull-stream/sinks/drain')
 var Abortable = require('pull-abortable')
 var Notify = require('pull-notify')
 
-function ReactStream (Elmt, _pushable) {
+function ReactStream (Elmt, onEnd) {
     var notify = Notify()
-    var pushable = _pushable || Pushable()
+    var sourceNotify = Notify()
+    var pushable = Pushable()
+
+    var source = S(
+        pushable,
+        S.through(sourceNotify)
+    )
+    source.listen = sourceNotify.listen
+    source.end = pushable.end
 
     var listener = notify.listen()
 
@@ -37,16 +45,19 @@ function ReactStream (Elmt, _pushable) {
         abortable,
         Drain(function onEvent (ev) {
             notify(ev)
-        }, function onEnd (err) {
+        }, function _onEnd (err) {
             if (err) throw err
+            pushable.end(err)
+            sourceNotify.end(err)
+            if (onEnd) onEnd(err)
         })
     )
-    drain.abort = abortable.abort.bind(abortable)
 
     return {
-        source: pushable,
+        source: source,
         sink: drain,
-        view: DrainElmt
+        view: DrainElmt,
+        abort: abortable.abort.bind(abortable)
     }
 }
 
