@@ -6,7 +6,7 @@ var toStream = require('../')
 
 test('duplex stream from react component', function (t) {
     var i = 0
-    t.plan(9)
+    t.plan(10)
 
     function Elmt (props) {
         if (props.count <= 3) {
@@ -37,7 +37,7 @@ test('duplex stream from react component', function (t) {
             t.equal(n, j++)
         }),
         S.collect(function (err, res) {
-            console.log('its over', err, res)
+            t.pass('subscriber should end')
         })
     )
 
