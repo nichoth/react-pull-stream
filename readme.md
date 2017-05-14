@@ -37,7 +37,9 @@ MyView.defaultProps = { count: 0 }
 
 
 // duplex stream
-var stream = toStream(MyView)
+var stream = toStream(MyView, function onEnd (err) {
+    console.log('its over')
+})
 
 var el = document.createElement('div')
 document.body.appendChild(el)
@@ -48,4 +50,13 @@ S(
     S.map( n => ({ count: n }) ),
     stream
 )
+
+S(
+    // you can have mulitple subscripbers
+    stream.source.listen(),
+    S.log()
+)
+
+stream.abort()  // end things
+
 ```
