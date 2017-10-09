@@ -1,5 +1,9 @@
 # react pull stream
 
+
+**This is deprecated.** See http://npm.im/@invintus/react-pull-stream
+
+
 Create a duplex stream from a react component.
 
 
